@@ -1,9 +1,31 @@
 services: 
   django:
-    image: python3
-    volume:
-      - ./app:/app
-
+    build:
+      context: docker
+    volumes:
+      - '.:/app'
+    environment:
+      DB_NAME:
+      DB_USER:
+      DB_PASSWORD:
+      DB_HOST:
+      DB_PORT:
+      SECRET_KEY:
+      DEBUG:
+    ports: 
+      - ${PORT}:8000
+    retart: 'on-failure'
+ 
   database:
     image: mariadb
-    
+    volumes:
+      - "mariadb_data:/var/lib/mysql:rw"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  mariadb_data:
+
