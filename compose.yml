@@ -1,0 +1,9 @@
+services: 
+  django:
+    image: python3
+    volume:
+      - ./app:/app
+
+  database:
+    image: mariadb
+    
