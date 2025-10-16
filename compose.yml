@@ -14,9 +14,9 @@ services:
       DEBUG:
     ports: 
       - ${PORT}:8000
-    retart: 'on-failure'
+    restart: 'on-failure'
     depends_on:
-      mariadb:
+      database:
         condition: service_healthy
 
 
