@@ -22,4 +22,6 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('truc/<str:nom>/', views.truc_detail, name='truc_detail'),
+    path('rawtruc/<str:nom>/', views.raw_truc, name='raw_truc'),
 ] + debug_toolbar_urls()

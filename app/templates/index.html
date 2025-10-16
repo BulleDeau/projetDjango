@@ -1,5 +1,17 @@
 {%extends "layouts/base.html"%}        
-        {% block content %}
-        <h1 class="text-primary">Bonjour {{ nom }} !</h1>
-        <p class="lead">Bienvenue sur ma première page Django avec Bootstrap 5.</p>
-        {% endblock %}
+    {% block content %}
+    <h1 class="text-primary">Bonjour {{ nom }} !</h1>
+    <p class="lead">Bienvenue sur ma première page Django avec Bootstrap 5.</p>
+
+    <h2>Liste des images disponibles :</h2>
+        <ul>
+        {% for image in images %}
+            <li>
+            <a href="{% url 'truc_detail' image %}">{{ image }}</a> 
+            — <a href="{% url 'raw_truc' image %}">(voir brut)</a>
+            </li>
+        {% empty %}
+            <li>Aucune image trouvée</li>
+        {% endfor %}
+        </ul>
+    {% endblock %}
