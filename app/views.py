@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+# from django.http import HttpResponse
+from django.shortcuts import render
+
 
 def index(request):
-    return HttpResponse("Bonjour tout le monde")
+    nom = "Toto"
+    return render(request, "index.html", {"nom": nom})
