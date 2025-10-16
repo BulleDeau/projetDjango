@@ -3,5 +3,8 @@ from django.shortcuts import render
 
 
 def index(request):
-    nom = "tout le monde"
-    return render(request, "index.html", {"nom": nom})
+    context = {
+        "nom" : "tout le monde",
+        "breadcrumb" : [("Accueil", "/")]
+        }
+    return render(request, "index.html", context)

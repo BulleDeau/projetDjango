@@ -2,25 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}structure HTML commune{% endblock %}</title>
+    <title>Mon site Django</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
-<body class="container mt-4">
-
-    <!-- Fil d’Ariane (breadcrumb) -->
+<body>
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-        {% block breadcrumb %}
-        <!-- Les pages filles ajouteront leurs propres éléments ici -->
-        {% endblock %}
-      </ol>
+        <ol class="breadcrumb">
+            {%for page,url in breadcrumb%}
+            <li class="breadcrumb-item"><a href="{{url}}">{{page}}</a></li>
+            {%endfor%}
+        </ol>
     </nav>
-
-    <!-- Contenu principal -->
-    <main>
+    <!-- <h1>Bonjour {{ nom }} !</h1> -->
+    <div class="container mt-5">
         {% block content %}
         {% endblock %}
-    </main>
-
-</body></html>
+    </div>
+</body>
+</html>

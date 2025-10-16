@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mon site Django</title>
-    {% load django_bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-    <!-- <h1>Bonjour {{ nom }} !</h1> -->
-    <div class="container mt-5">
+{%extends "layouts/base.html"%}        
+        {% block content %}
         <h1 class="text-primary">Bonjour {{ nom }} !</h1>
         <p class="lead">Bienvenue sur ma première page Django avec Bootstrap 5.</p>
-        <!-- <button class="btn btn-success">C’est parti !</button> -->
-    </div>
-</body>
-</html>
+        {% endblock %}
