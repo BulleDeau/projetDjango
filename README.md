@@ -1,4 +1,4 @@
-# Introduction a Django, David Beniamine, Handigital, 08/10/25
+# Introduction a Django, &emsp;David Beniamine, &emsp;Handigital, 08/10/25
 
 ## Description
 
@@ -8,9 +8,9 @@
 
 
 ## Ajouter bootstrap
-Ajouter dans votre image le paquet pip django-bootstrap5  
-Ajouter dans les INSTALLED_APPS : django_bootstrap5  
-Dans le head de votre template ajouter  
+Ajouter dans votre image (Dockerfile) le paquet pip django-bootstrap5  
+Ajouter dans les INSTALLED_APPS (settings.py): django_bootstrap5  
+Dans le head de votre template (index.html) ajouter  
 &emsp;{% load django_bootstrap5 %}  
 &emsp;{% bootstrap_css %}  
 &emsp;{% bootstrap_javascript %}  
