@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}structure HTML commune{% endblock %}</title>
+</head>
+<body class="container mt-4">
+
+    <!-- Fil d’Ariane (breadcrumb) -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+        {% block breadcrumb %}
+        <!-- Les pages filles ajouteront leurs propres éléments ici -->
+        {% endblock %}
+      </ol>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body></html>
