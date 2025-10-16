@@ -3,5 +3,5 @@ from django.shortcuts import render
 
 
 def index(request):
-    nom = "Toto"
+    nom = "tout le monde"
     return render(request, "index.html", {"nom": nom})
