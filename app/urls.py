@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import IndexView, TrucDetailView
 from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('truc/<str:nom>/', views.truc_detail, name='truc_detail'),
+    path('', IndexView.as_view(), name='index'),                            # page liste
+    path("truc/<int:pk>/", TrucDetailView.as_view(), name="truc_detail"),   # détail
     path('rawtruc/<str:nom>/', views.raw_truc, name='raw_truc'),
 ] + debug_toolbar_urls()

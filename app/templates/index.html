@@ -1,16 +1,12 @@
 {%extends "layouts/base.html"%}        
     {% block content %}
-    <h1 class="text-primary">Bonjour {{ nom }} !</h1>
-    <p class="lead">Bienvenue sur ma première page Django avec Bootstrap 5.</p>
 
-    <h2>Liste des images disponibles :</h2>
+    <h2>{{ titre }}</h2>
         <ul>
-        {% for image in images %}
+        {% for truc in trucs %}
             <li>
-            <!-- <a href="{% url 'truc_detail' image %}">{{ image }}</a> 
-            — <a href="{% url 'raw_truc' image %}">(voir brut)</a> -->
-            <a href="{% url 'truc_detail' image.path %}"> {{ image.name }}</a> -             
-            <a href="{% url 'raw_truc' image.path %}">  (voir brut)</a>
+            <a href="{% url 'truc_detail' truc.pk %}">{{ truc.name }}</a>
+            <a href="{% url 'raw_truc' nom=truc.path %}">  (voir brut)</a>
             </li>
         {% empty %}
             <li>Aucune image trouvée</li>

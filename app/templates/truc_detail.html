@@ -1,5 +1,17 @@
 {% extends "layouts/base.html" %}
+
 {% block content %}
-<h2>Détail de l’image : {{ nom }}</h2>
-<img src="/rawtruc/{{ nom }}" alt="{{ nom }}">
+<nav>
+  {% for label, url in breadcrumb %}
+    <a href="{{ url }}">{{ label }}</a>{% if not forloop.last %} &gt; {% endif %}
+  {% endfor %}
+</nav>
+<h1>{{ truc.name }}</h1> 
+<p>Chemin : {{ truc.path }}</p>
+
+<h2>Détail de l'image : {{ truc.name }}</h2>
+
+<p>Chemin : {{ truc.path }}</p>
+
+<img src="{% url 'raw_truc' nom=truc.path %}" alt="{{ truc.name }}" style="max-width: 500px;">
 {% endblock %}
