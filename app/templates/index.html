@@ -9,7 +9,8 @@
             <li>
             <!-- <a href="{% url 'truc_detail' image %}">{{ image }}</a> 
             — <a href="{% url 'raw_truc' image %}">(voir brut)</a> -->
-            {{ image.name }} — {{ image.path }}
+            <a href="{% url 'truc_detail' image.path %}"> {{ image.name }}</a> -             
+            <a href="{% url 'raw_truc' image.path %}">  (voir brut)</a>
             </li>
         {% empty %}
             <li>Aucune image trouvée</li>

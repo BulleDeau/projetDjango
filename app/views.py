@@ -9,7 +9,6 @@ data_dir = os.path.join(os.path.dirname(__file__), "../docker/data")
 
 def index(request):
     trucs = models.MonTruc.objects.all()  
-    
     context = {
         "nom" : "tout le monde",
         "images" : trucs,
@@ -28,11 +27,10 @@ def raw_truc(request, nom):
     # Chemin complet vers ton dossier contenant les images
     data_dir = os.path.join(os.path.dirname(__file__), "../docker/data")
     file_path = os.path.join(data_dir, nom)
-
     # Vérifie que le fichier existe avant de le renvoyer
     if not os.path.exists(file_path):
         from django.http import Http404
-        raise Http404("Fichier non trouvé")
+        raise Http404("objet non trouvé")
 
     # Renvoie le contenu brut du fichier image
     return FileResponse(open(file_path, 'rb'), content_type='image/png')
