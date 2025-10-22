@@ -7,8 +7,9 @@
         <ul>
         {% for image in images %}
             <li>
-            <a href="{% url 'truc_detail' image %}">{{ image }}</a> 
-            — <a href="{% url 'raw_truc' image %}">(voir brut)</a>
+            <!-- <a href="{% url 'truc_detail' image %}">{{ image }}</a> 
+            — <a href="{% url 'raw_truc' image %}">(voir brut)</a> -->
+            {{ image.name }} — {{ image.path }}
             </li>
         {% empty %}
             <li>Aucune image trouvée</li>
