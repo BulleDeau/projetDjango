@@ -17,12 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import IndexView, TrucDetailView
+from .views import IndexView, TrucDetailView, MonTrucCreateView
 from debug_toolbar.toolbar import debug_toolbar_urls
+
+# faire évoluer le modèle pour que Django gère automatiquement les fichiers (upload, accès, stockage, etc.) au lieu d’un simple texte de chemin.
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),                            # page liste
     path("truc/<int:pk>/", TrucDetailView.as_view(), name="truc_detail"),   # détail
     path('rawtruc/<str:nom>/', views.raw_truc, name='raw_truc'),
+    path('truc/ajouter/', MonTrucCreateView.as_view(), name='truc_add'),
 ] + debug_toolbar_urls()
+
+# faire évoluer le modèle pour que Django gère automatiquement les fichiers (upload, accès, stockage, etc.) au lieu d’un simple texte de chemin.
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

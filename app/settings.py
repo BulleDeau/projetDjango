@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from os import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,3 +138,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# faire évoluer le modèle pour que Django gère automatiquement les fichiers (upload, accès, stockage, etc.) au lieu d’un simple texte de chemin.
+MEDIA_URL = "/media/"                   # les fichiers seront servis depuis /media/...
+MEDIA_ROOT = BASE_DIR / 'docker' / 'data'                  # les fichiers seront servis depuis BASE_DIR / 'docker' / 'data'

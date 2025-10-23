@@ -4,6 +4,11 @@ from django.shortcuts import render
 from django.http import FileResponse
 from . import models
 from django.views.generic import ListView, DetailView
+# Créer une vue CBV pour crer un objet (faire un formulaire)
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from .models import MonTruc
+from .forms import MonTrucForm
 
 
 data_dir = os.path.join(os.path.dirname(__file__), "../docker/data")
@@ -17,7 +22,8 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)        # Récupère le contexte de base généré par ListView
-        context["titre"] = "Liste des trucs disponibles"    # infos supplémentaires :
+        context["titre"] = "Liste des trucs disponibles"    # infos supplémentaires
+        context["form"] = MonTrucForm()                     # ajouter le formulaire
         return context
 
 # Vue pour le détail d’un truc
@@ -29,8 +35,9 @@ class TrucDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["breadcrumb"] = [
-            ("Accueil", "/"),
-            (self.object.name, f"/truc/{self.object.pk}/")
+            # ("Accueil", "/"),
+            # (self.object.name, f"/truc/{self.object.pk}/")
+            ("Accueil", "/")
         ]
         return context
 
@@ -63,3 +70,10 @@ def raw_truc(request, nom):
     # Renvoie le contenu brut du fichier image
     return FileResponse(open(file_path, 'rb'), content_type='image/png')
 
+# formulaire
+# CreateView s’occupe de gérer le formulaire, la validation et la création de l’objet.
+class MonTrucCreateView(CreateView):
+    model = MonTruc
+    form_class = MonTrucForm
+    template_name = 'montruc_form.html'  # tu peux créer un template simple
+    success_url = reverse_lazy('index')   # redirection après création, reverse_lazy est utilisé car les URL ne sont pas encore chargées au moment de l’import
