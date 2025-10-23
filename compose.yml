@@ -19,8 +19,6 @@ services:
       database:
         condition: service_healthy
 
-
-
   database:
     image: mariadb
     volumes:
@@ -37,6 +35,12 @@ services:
       interval: 2m
       retries: 3
       timeout: 5s 
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
   mariadb_data:

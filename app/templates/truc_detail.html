@@ -7,4 +7,14 @@
 <p>Nom du fichier : {{ truc.path }}</p>
 
 <img src="{% url 'raw_truc' nom=truc.path %}" alt="{{ truc.name }}" style="max-width: 500px;">
+
+
+<h2>{{ supprimer }}</h2>
+  <p>Êtes-vous sûr de vouloir supprimer ce fichier ?</p>
+  <form action="{% url 'truc_delete' truc.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'index' %}">Annuler</a>
+  </form>
+
 {% endblock %}

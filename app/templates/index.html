@@ -14,7 +14,9 @@
         {% endfor %}
         </ul>
 
+
     <!-- Formulaire de création -->
+    <h2>{{ ajouter }}</h2>
     <!-- enctype="multipart/form-data" est obligatoire pour que l’upload de fichiers fonctionne.-->
     <!-- {% csrf_token %} est nécessaire pour que Django accepte le POST -->
     <form action="{% url 'truc_add' %}" method="post" enctype="multipart/form-data">
@@ -22,4 +24,14 @@
         {{ form.as_p }}
         <button type="submit">Ajouter une image</button>
     </form>
+
+    <!-- Formulaire de modification -->
+    <h2>{{ modifier }}</h2>
+    <form action="{% url 'truc_edit' truc.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer les modifications</button>
+    </form>
+
+
     {% endblock %}

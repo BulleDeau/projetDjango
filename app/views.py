@@ -5,7 +5,7 @@ from django.http import FileResponse
 from . import models
 from django.views.generic import ListView, DetailView
 # Créer une vue CBV pour crer un objet (faire un formulaire)
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import MonTruc
 from .forms import MonTrucForm
@@ -23,6 +23,9 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)        # Récupère le contexte de base généré par ListView
         context["titre"] = "Liste des trucs disponibles"    # infos supplémentaires
+        context["ajouter"] = "Ajouter des trucs"            
+        context["modifier"] = "Modifier des trucs"            
+        context["supprimer"] = "Supprimer des trucs"            
         context["form"] = MonTrucForm()                     # ajouter le formulaire
         return context
 
@@ -77,3 +80,16 @@ class MonTrucCreateView(CreateView):
     form_class = MonTrucForm
     template_name = 'montruc_form.html'  # tu peux créer un template simple
     success_url = reverse_lazy('index')   # redirection après création, reverse_lazy est utilisé car les URL ne sont pas encore chargées au moment de l’import
+
+# UpdateView : affiche un formulaire pré-rempli avec les données existantes, pour les modifier.
+class MonTrucUpdateView(UpdateView):
+    model = MonTruc
+    form_class = MonTrucForm
+    template_name = 'truc_edit.html'
+    success_url = reverse_lazy('index')
+
+# DeleteView : demande confirmation avant suppression.
+class MonTrucDeleteView(DeleteView):
+    model = MonTruc
+    template_name = 'truc_confirm_delete.html'
+    success_url = reverse_lazy('index')

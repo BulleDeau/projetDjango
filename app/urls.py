@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import IndexView, TrucDetailView, MonTrucCreateView
+from .views import IndexView, TrucDetailView, MonTrucCreateView, MonTrucUpdateView, MonTrucDeleteView
 from debug_toolbar.toolbar import debug_toolbar_urls
 
 # faire évoluer le modèle pour que Django gère automatiquement les fichiers (upload, accès, stockage, etc.) au lieu d’un simple texte de chemin.
@@ -30,6 +30,8 @@ urlpatterns = [
     path("truc/<int:pk>/", TrucDetailView.as_view(), name="truc_detail"),   # détail
     path('rawtruc/<str:nom>/', views.raw_truc, name='raw_truc'),
     path('truc/ajouter/', MonTrucCreateView.as_view(), name='truc_add'),
+    path('truc/<int:pk>/modifier/', MonTrucUpdateView.as_view(), name='truc_edit'),
+    path('truc/<int:pk>/supprimer/', MonTrucDeleteView.as_view(), name='truc_delete'),
 ] + debug_toolbar_urls()
 
 # faire évoluer le modèle pour que Django gère automatiquement les fichiers (upload, accès, stockage, etc.) au lieu d’un simple texte de chemin.
